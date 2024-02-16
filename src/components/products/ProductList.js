@@ -5,7 +5,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { products, sortOptions, filters } from "../../data/products";
-import {getAllProductsAsync} from "../../redux/product/product.async"
+import { getAllProductsAsync } from "../../redux/product/product.async";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -20,39 +20,19 @@ import {
 function ProductList() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  const { productLoader, productData } = useSelector(
+    (product) => product.product
+  );
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
 
-  const items = [
-    {
-      id: 1,
-      title: "Back End Developer",
-      department: "Engineering",
-      type: "Full-time",
-      location: "Remote",
-    },
-    {
-      id: 2,
-      title: "Front End Developer",
-      department: "Engineering",
-      type: "Full-time",
-      location: "Remote",
-    },
-    {
-      id: 3,
-      title: "User Interface Designer",
-      department: "Design",
-      type: "Full-time",
-      location: "Remote",
-    },
-  ];
-
-  useEffect(()=>{
-    dispatch(getAllProductsAsync())
-  },[])
+  useEffect(() => {
+    dispatch(getAllProductsAsync());
+  }, []);
 
   return (
     <div>
