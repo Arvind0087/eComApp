@@ -1,9 +1,11 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { getAllProductsAsync } from "./product.async";
+import { getAllProductsAsync, getProductsByFilterAsync } from "./product.async";
 
 const initialState = {
   productLoader: false,
   productData: [],
+  filterLoader: false,
+  filterProduct: [],
 };
 
 export const productSlice = createSlice({
@@ -24,6 +26,23 @@ export const productSlice = createSlice({
       isAnyOf(getAllProductsAsync.rejected),
       (state, action) => {
         state.productLoader = false;
+      }
+    );
+
+    builder.addMatcher(isAnyOf(getProductsByFilterAsync.pending), (state) => {
+      state.filterLoader = true;
+    });
+    builder.addMatcher(
+      isAnyOf(getProductsByFilterAsync.fulfilled),
+      (state, action) => {
+        state.filterLoader = false;
+        state.productData = action.payload;
+      }
+    );
+    builder.addMatcher(
+      isAnyOf(getProductsByFilterAsync.rejected),
+      (state, action) => {
+        state.filterLoader = false;
       }
     );
   },

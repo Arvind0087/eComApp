@@ -7,3 +7,16 @@ export const getAllProductsAsync = createAsyncThunk(
     return await AxiosClient("GET", `/products`, [], toolkit);
   }
 );
+
+export const getProductsByFilterAsync = createAsyncThunk(
+  "admin/getProductsByFilter",
+  async (payload, toolkit) => {
+    let queryString = "";
+    for (let key in payload) {
+      queryString += `${key}=${payload[key]}&`;
+    }
+    console.log("queryString...", queryString)
+
+    return await AxiosClient("GET", "/products?" + queryString, [], toolkit);
+  }
+);
