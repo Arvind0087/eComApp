@@ -27,6 +27,7 @@ export default function ProductList() {
   }
 
   const [filterProduct, setFilterProduct] = useState({});
+  const [sort, setSort] = useState({});
 
   // const categories = [...new Set([...products?.map((p)=>p.category)])]
 
@@ -81,15 +82,40 @@ export default function ProductList() {
   }, []);
 
   useEffect(() => {
-    dispatch(getProductsByFilterAsync(filterProduct));
-  }, [filterProduct]);
-
-  console.log("filterProduct...", filterProduct)
+    let payload = {
+      filterProduct: filterProduct,
+      sort: sort,
+    };
+    dispatch(getProductsByFilterAsync(payload));
+  }, [dispatch, filterProduct, sort]);
 
   const handleFilter = (e, section, option) => {
-    console.log("e.....", option)
-    const newFilter = { ...filterProduct, [section.id]: option.value };
+    const newFilter = { ...filterProduct };
+    if (e.target.checked) {
+      if (newFilter[section.id]) {
+        newFilter[section.id].push(option.value);
+      } else {
+        newFilter[section.id] = [option.value];
+      }
+    } else {
+      const index = newFilter[section.id].findIndex(
+        (el) => el === option.value
+      );
+      newFilter[section.id].splice(index, 1);
+    }
+
+    //const newFilter = { ...filterProduct, [section.id]: option.value };
     setFilterProduct(newFilter);
+  };
+
+  console.log("filterProduct....", filterProduct);
+
+  const handleSort = (e, option) => {
+    const newSort = {
+      sort: option.sort,
+      order: option.order,
+    };
+    setSort(newSort);
   };
 
   return (
@@ -138,6 +164,7 @@ export default function ProductList() {
                           <Menu.Item key={option.name}>
                             {({ active }) => (
                               <p
+                                onClick={(e) => handleSort(e, option)}
                                 className={classNames(
                                   option.current
                                     ? "font-medium text-gray-900"
