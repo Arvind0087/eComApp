@@ -26,9 +26,19 @@ export default function Pagination({ page, handlePage, totalItems }) {
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-gray-700">
-            Showing <span className="font-medium">{page}</span> to{" "}
-            <span className="font-medium">{ITEMS_PER_PAGE * page}</span> of{" "}
-            <span className="font-medium">{totalItems}</span> results
+            Showing{" "}
+            <span className="font-medium">
+              {/*(page - 1) * ITEMS_PER_PAGE + 1 */}
+              {page}
+            </span>{" "}
+            to{" "}
+            <span className="font-medium">
+              {" "}
+              {page * ITEMS_PER_PAGE > totalItems
+                ? totalItems
+                : page * ITEMS_PER_PAGE}
+            </span>{" "}
+            of <span className="font-medium">{totalItems}</span> results
           </p>
         </div>
         <div>

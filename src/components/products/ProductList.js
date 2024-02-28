@@ -72,6 +72,10 @@ export default function ProductList() {
   };
 
   useEffect(() => {
+    setPage(1);
+  }, [productData?.items, sort]);
+
+  useEffect(() => {
     // dispatch(getAllProductsAsync());
   }, []);
 
