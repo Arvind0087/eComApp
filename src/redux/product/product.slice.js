@@ -1,11 +1,17 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { getAllProductsAsync, getProductsByFilterAsync } from "./product.async";
+import {
+  getAllProductsAsync,
+  getProductsByFilterAsync,
+  // getTotalProductCountAsync,
+} from "./product.async";
 
 const initialState = {
   productLoader: false,
   productData: [],
   filterLoader: false,
   filterProduct: [],
+  // totalProdLoader: false,
+  // totalProdCount: "",
 };
 
 export const productSlice = createSlice({
@@ -45,6 +51,23 @@ export const productSlice = createSlice({
         state.filterLoader = false;
       }
     );
+
+    // builder.addMatcher(isAnyOf(getTotalProductCountAsync.pending), (state) => {
+    //   state.totalProdLoader = true;
+    // });
+    // builder.addMatcher(
+    //   isAnyOf(getTotalProductCountAsync.fulfilled),
+    //   (state, action) => {
+    //     state.totalProdLoader = false;
+    //     state.totalProdCount = action.payload[0]?.totalCount;
+    //   }
+    // );
+    // builder.addMatcher(
+    //   isAnyOf(getTotalProductCountAsync.rejected),
+    //   (state, action) => {
+    //     state.totalProdLoader = false;
+    //   }
+    // );
   },
   reducers: {
     emptyactivity: (state) => initialState,

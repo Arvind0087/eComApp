@@ -16,9 +16,9 @@ function App() {
         </Routes>
   </BrowserRouter> */}
       {/* <Dashboard /> */}
-      {/*   */}
       <RouterProvider router={routerList} />
-      {/*         <Dummy /> */}
+
+      {/*<Dummy />  */}
     </div>
   );
 }

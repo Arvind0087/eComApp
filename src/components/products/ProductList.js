@@ -11,6 +11,8 @@ import {
 } from "../../redux/product/product.async";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../common/Pagination";
+import { ITEMS_PER_PAGE } from "../../constants";
+import axios from "axios";
 
 import {
   ChevronDownIcon,
@@ -29,11 +31,17 @@ export default function ProductList() {
   const [filterProduct, setFilterProduct] = useState({});
   const [sort, setSort] = useState({});
 
+  const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+  const { productLoader, productData, totalProdCount } = useSelector(
+    (product) => product.product
+  );
   // const categories = [...new Set([...products?.map((p)=>p.category)])]
 
-  const categories = products.map((product) => product?.category);
+  const categories = products?.map((product) => product?.category);
   const uniqueCategories = [...new Set(categories)]?.map((c) => ({
-    // value: c.split(" ").join(""),
     value: c,
     label: c,
     checked: false,
@@ -59,35 +67,33 @@ export default function ProductList() {
     },
   ];
 
-  const [page, setPage] = useState(1);
-  const dispatch = useDispatch();
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-
-  const { productLoader, productData } = useSelector(
-    (product) => product.product
-  );
-
   const handlePage = (page) => {
     setPage(page);
   };
 
   useEffect(() => {
-    dispatch(getAllProductsAsync());
+    // dispatch(getAllProductsAsync());
   }, []);
 
-  const slicedproductData = productData?.slice(page * 10 - 10, page * 10);
+  // const slicedproductData = productData?.data?.slice(page * 10 - 10, page * 10);
+
+  console.log("productData....", productData?.items);
 
   useEffect(() => {
     dispatch(getProductsByFilterAsync({}));
   }, []);
 
   useEffect(() => {
+    let pagination = { _page: page, _per_page: ITEMS_PER_PAGE };
+
     let payload = {
       filterProduct: filterProduct,
       sort: sort,
+      pagination: pagination,
     };
+
     dispatch(getProductsByFilterAsync(payload));
-  }, [dispatch, filterProduct, sort]);
+  }, [dispatch, filterProduct, sort, page]);
 
   const handleFilter = (e, section, option) => {
     const newFilter = { ...filterProduct };
@@ -107,8 +113,6 @@ export default function ProductList() {
     //const newFilter = { ...filterProduct, [section.id]: option.value };
     setFilterProduct(newFilter);
   };
-
-  console.log("filterProduct....", filterProduct);
 
   const handleSort = (e, option) => {
     const newSort = {
@@ -212,8 +216,9 @@ export default function ProductList() {
                 {/* Product grid */}
                 <div className="lg:col-span-3">
                   <ProductGrid
-                    products={slicedproductData}
+                    products={productData?.data}
                     status="notloading"
+                    productLoader={productLoader}
                   ></ProductGrid>
                 </div>
                 {/* Product grid end */}
@@ -224,7 +229,7 @@ export default function ProductList() {
             <Pagination
               page={page}
               handlePage={handlePage}
-              totalItems={productData?.length}
+              totalItems={productData?.items}
             />
           </main>
         </div>
@@ -408,12 +413,12 @@ function DesktopFilter({ handleFilter, filters }) {
   );
 }
 
-function ProductGrid({ products, status }) {
+function ProductGrid({ products, status, productLoader }) {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-          {/*status === "loading" ? (
+          {/*productLoader === true ? (
             <Grid
               height="80"
               width="80"
@@ -425,7 +430,7 @@ function ProductGrid({ products, status }) {
               visible={true}
             />
           ) : null */}
-          {products.map((product) => (
+          {products?.map((product) => (
             <Link to={`/product-detail/${product.id}`} key={product.id}>
               <div className="group relative border-solid border-2 p-2 border-gray-200">
                 <div className="min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">

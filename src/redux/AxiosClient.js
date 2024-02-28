@@ -16,8 +16,6 @@ const AxiosClient = async (
   toolkit,
   content = "application/json"
 ) => {
-  console.log("process.env.REACT_APP_BASE_URL", process.env.REACT_APP_BASE_URL)
-
   const AxiosTypeString = {
     GET: "get",
     POST: "post",

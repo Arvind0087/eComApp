@@ -2,6 +2,7 @@ import React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
+import logoImg from "../../assets/images/logo.png";
 import {
   Bars3Icon,
   ShoppingCartIcon,
@@ -43,8 +44,8 @@ function NavBar({ children }) {
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
                       <img
-                        className="h-8 w-8"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        className="h-10 w-18"
+                        src={logoImg}
                         alt="Your Company"
                       />
                     </div>
