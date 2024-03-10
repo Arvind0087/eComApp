@@ -8,6 +8,8 @@ import { products, sortOptions } from "../../data/products";
 import {
   getAllProductsAsync,
   getProductsByFilterAsync,
+  getAllCategoriesAsync,
+  getAllBrandsAsync,
 } from "../../redux/product/product.async";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "../common/Pagination";
@@ -35,35 +37,35 @@ export default function ProductList() {
   const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  const { productLoader, productData, totalProdCount } = useSelector(
-    (product) => product.product
-  );
-  // const categories = [...new Set([...products?.map((p)=>p.category)])]
+  const { productLoader, productData, totalProdCount, categories, brands } =
+    useSelector((product) => product.product);
 
-  const categories = products?.map((product) => product?.category);
-  const uniqueCategories = [...new Set(categories)]?.map((c) => ({
-    value: c,
-    label: c,
-    checked: false,
-  }));
+  // const categories = products?.map((product) => product?.category);
+  // const uniqueCategories = [...new Set(categories)]?.map((c) => ({
+  //   value: c,
+  //   label: c,
+  //   checked: false,
+  // }));
 
-  const brands = products.map((brand) => brand?.brand);
-  const uniqueBrands = [...new Set(brands)]?.map((b) => ({
-    value: b,
-    label: b,
-    checked: false,
-  }));
+  // const brands = products.map((brand) => brand?.brand);
+  // const uniqueBrands = [...new Set(brands)]?.map((b) => ({
+  //   value: b,
+  //   label: b,
+  //   checked: false,
+  // }));
 
   const filters = [
     {
       id: "category",
       name: "Category",
-      options: uniqueCategories,
+      // options: uniqueCategories,
+      options: categories,
     },
     {
       id: "brand",
       name: "Brand",
-      options: uniqueBrands,
+      // options: uniqueBrands,
+      options: brands,
     },
   ];
 
@@ -77,15 +79,13 @@ export default function ProductList() {
 
   useEffect(() => {
     // dispatch(getAllProductsAsync());
+    //dispatch(getProductsByFilterAsync({}));
+
+    dispatch(getAllBrandsAsync());
+    dispatch(getAllCategoriesAsync());
   }, []);
 
   // const slicedproductData = productData?.data?.slice(page * 10 - 10, page * 10);
-
-  console.log("productData....", productData?.items);
-
-  useEffect(() => {
-    dispatch(getProductsByFilterAsync({}));
-  }, []);
 
   useEffect(() => {
     let pagination = { _page: page, _per_page: ITEMS_PER_PAGE };

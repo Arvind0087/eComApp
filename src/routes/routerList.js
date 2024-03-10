@@ -7,12 +7,20 @@ import {
   Cart,
   Checkout,
   ProductDetail,
+  Profile,
+  Orders,
+  Logout,
 } from "./elements";
+import Protected from "../components/Protected";
 
 export const routerList = createBrowserRouter([
   {
     path: "/",
-    element: <Dashboard />,
+    element: (
+      <Protected>
+        <Dashboard></Dashboard>
+      </Protected>
+    ),
   },
   {
     path: "/login",
@@ -28,15 +36,51 @@ export const routerList = createBrowserRouter([
   },
   {
     path: "/cart",
-    element: <Cart />,
+    element: (
+      <Protected>
+        <Cart></Cart>
+      </Protected>
+    ),
   },
   {
     path: "/checkout",
-    element: <Checkout />,
+    element: (
+      <Protected>
+        <Checkout></Checkout>
+      </Protected>
+    ),
   },
   {
-    path: "/product-detail",
-    element: <ProductDetail />,
+    path: "/product-detail/:id",
+    element: (
+      <Protected>
+        <ProductDetail></ProductDetail>
+      </Protected>
+    ),
+  },
+  {
+    path: "/profile",
+    element: (
+      <Protected>
+        <Profile></Profile>
+      </Protected>
+    ),
+  },
+  {
+    path: "/orders",
+    element: (
+      <Protected>
+        <Orders></Orders>
+      </Protected>
+    ),
+  },
+  {
+    path: "/logout",
+    element: (
+      <Protected>
+        <Logout></Logout>
+      </Protected>
+    ),
   },
   {
     path: "*",

@@ -1,7 +1,68 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import {
+  validateUserAsync,
+  getAllUserAsync,
+} from "../../redux/auth/auth.async";
 
 function LoginPage() {
+  const dispatch = useDispatch();
+  const { createSignup, validateUser, getUsers } = useSelector(
+    (state) => state.auth
+  );
+
+  const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  useEffect(() => {
+    dispatch(getAllUserAsync({}));
+  }, []);
+
+  const handleLogin = (data) => {
+    if (data) {
+      const payload = {
+        email: data.email,
+      };
+      dispatch(validateUserAsync(payload)).then((res) => {
+        if (res?.payload?.length !== 0) {
+          const email = data.email;
+          const password = data.password;
+
+          const emailExists = getUsers?.some((obj) => obj.email === email);
+
+          if (emailExists) {
+            const filterCurrentUser = getUsers?.filter(
+              (user) => user.email === email
+            );
+
+            localStorage.setItem("user", JSON.stringify(...filterCurrentUser));
+
+            const checkEmailPassword = filterCurrentUser?.some((user) => {
+              return user.email === email && user.password === password;
+            });
+
+            if (checkEmailPassword) {
+              navigate("/");
+            } else {
+              alert("User Id or password is not matching!");
+            }
+          }
+        } else {
+          alert("User not found!");
+        }
+      });
+    }
+  };
+
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -17,7 +78,11 @@ function LoginPage() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form
+            className="space-y-6"
+            noValidate
+            onSubmit={handleSubmit((data) => handleLogin(data))}
+          >
             <div>
               <label
                 htmlFor="email"
@@ -28,12 +93,20 @@ function LoginPage() {
               <div className="mt-2">
                 <input
                   id="email"
-                  name="email"
+                  {...register("email", {
+                    required: "email is required",
+                    pattern: {
+                      value: /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi,
+                      message: "email not valid",
+                    },
+                  })}
                   type="email"
-                  autoComplete="email"
-                  required
+                  // autoComplete="email"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {errors.email && (
+                  <p className="text-red-500">{errors.email.message}</p>
+                )}
               </div>
             </div>
 
@@ -46,21 +119,22 @@ function LoginPage() {
                   Password
                 </label>
                 <div className="text-sm">
-                  <a
-                    href="#"
+                  <Link
+                    to="/forgot-password"
                     className="font-semibold text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot password?
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="mt-2">
                 <input
                   id="password"
-                  name="password"
+                  {...register("password", {
+                    required: "password is required",
+                  })}
                   type="password"
-                  autoComplete="current-password"
-                  required
+                  // autoComplete="current-password"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -82,6 +156,7 @@ function LoginPage() {
               to="/signup"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
+              {" "}
               Create an account
             </Link>
           </p>

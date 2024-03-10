@@ -2,6 +2,8 @@ import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   getAllProductsAsync,
   getProductsByFilterAsync,
+  getAllCategoriesAsync,
+  getAllBrandsAsync,
   // getTotalProductCountAsync,
 } from "./product.async";
 
@@ -10,6 +12,8 @@ const initialState = {
   productData: [],
   filterLoader: false,
   filterProduct: [],
+  categories: [],
+  brands: [],
   // totalProdLoader: false,
   // totalProdCount: "",
 };
@@ -49,6 +53,40 @@ export const productSlice = createSlice({
       isAnyOf(getProductsByFilterAsync.rejected),
       (state, action) => {
         state.filterLoader = false;
+      }
+    );
+
+    builder.addMatcher(isAnyOf(getAllCategoriesAsync.pending), (state) => {
+      state.productLoader = true;
+    });
+    builder.addMatcher(
+      isAnyOf(getAllCategoriesAsync.fulfilled),
+      (state, action) => {
+        state.productLoader = false;
+        state.categories = action.payload;
+      }
+    );
+    builder.addMatcher(
+      isAnyOf(getAllCategoriesAsync.rejected),
+      (state, action) => {
+        state.productLoader = false;
+      }
+    );
+
+    builder.addMatcher(isAnyOf(getAllBrandsAsync.pending), (state) => {
+      state.productLoader = true;
+    });
+    builder.addMatcher(
+      isAnyOf(getAllBrandsAsync.fulfilled),
+      (state, action) => {
+        state.productLoader = false;
+        state.brands = action.payload;
+      }
+    );
+    builder.addMatcher(
+      isAnyOf(getAllBrandsAsync.rejected),
+      (state, action) => {
+        state.productLoader = false;
       }
     );
 

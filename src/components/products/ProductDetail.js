@@ -2,6 +2,7 @@ import { useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { Link } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -73,28 +74,29 @@ function ProductDetail() {
             role="list"
             className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
           >
-            {product.breadcrumbs.map((breadcrumb) => (
-              <li key={breadcrumb.id}>
-                <div className="flex items-center">
-                  <a
-                    href={breadcrumb.href}
-                    className="mr-2 text-sm font-medium text-gray-900"
-                  >
-                    {breadcrumb.name}
-                  </a>
-                  <svg
-                    width={16}
-                    height={20}
-                    viewBox="0 0 16 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                    className="h-5 w-4 text-gray-300"
-                  >
-                    <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                  </svg>
-                </div>
-              </li>
-            ))}
+            {product.breadcrumbs &&
+              product.breadcrumbs.map((breadcrumb) => (
+                <li key={breadcrumb.id}>
+                  <div className="flex items-center">
+                    <a
+                      href={breadcrumb.href}
+                      className="mr-2 text-sm font-medium text-gray-900"
+                    >
+                      {breadcrumb.name}
+                    </a>
+                    <svg
+                      width={16}
+                      height={20}
+                      viewBox="0 0 16 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      className="h-5 w-4 text-gray-300"
+                    >
+                      <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+                    </svg>
+                  </div>
+                </li>
+              ))}
             <li className="text-sm">
               <a
                 href={product.href}
@@ -198,31 +200,32 @@ function ProductDetail() {
                     Choose a color
                   </RadioGroup.Label>
                   <div className="flex items-center space-x-3">
-                    {product.colors.map((color) => (
-                      <RadioGroup.Option
-                        key={color.name}
-                        value={color}
-                        className={({ active, checked }) =>
-                          classNames(
-                            color.selectedClass,
-                            active && checked ? "ring ring-offset-1" : "",
-                            !active && checked ? "ring-2" : "",
-                            "relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none"
-                          )
-                        }
-                      >
-                        <RadioGroup.Label as="span" className="sr-only">
-                          {color.name}
-                        </RadioGroup.Label>
-                        <span
-                          aria-hidden="true"
-                          className={classNames(
-                            color.class,
-                            "h-8 w-8 rounded-full border border-black border-opacity-10"
-                          )}
-                        />
-                      </RadioGroup.Option>
-                    ))}
+                    {product.colors &&
+                      product.colors.map((color) => (
+                        <RadioGroup.Option
+                          key={color.name}
+                          value={color}
+                          className={({ active, checked }) =>
+                            classNames(
+                              color.selectedClass,
+                              active && checked ? "ring ring-offset-1" : "",
+                              !active && checked ? "ring-2" : "",
+                              "relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none"
+                            )
+                          }
+                        >
+                          <RadioGroup.Label as="span" className="sr-only">
+                            {color.name}
+                          </RadioGroup.Label>
+                          <span
+                            aria-hidden="true"
+                            className={classNames(
+                              color.class,
+                              "h-8 w-8 rounded-full border border-black border-opacity-10"
+                            )}
+                          />
+                        </RadioGroup.Option>
+                      ))}
                   </div>
                 </RadioGroup>
               </div>
@@ -235,7 +238,7 @@ function ProductDetail() {
                     href="#"
                     className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
                   >
-                    Size guide
+                    Size
                   </a>
                 </div>
 

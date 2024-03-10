@@ -1,5 +1,4 @@
 import "./App.css";
-import Counter from "./pages/counterPage/Counter";
 import Dashboard from "./pages/dashboard/Dashboard";
 import { RouterProvider } from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
@@ -9,7 +8,6 @@ import Dummy from "./pages/Dummy";
 function App() {
   return (
     <div className="App">
-      {/*<Counter /> */}
       {/* <BrowserRouter>
         <Routes>
           <Route path="/" exact component={<Dashboard />} />
