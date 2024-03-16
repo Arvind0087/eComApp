@@ -2460,17 +2460,47 @@
       ]
     },
     {
-      "id": "f7a8",
-      "email": "admin@daksh.com",
-      "password": "aK@34567",
-      "addresses": [],
-      "role": "user"
-    },
-    {
       "id": "e77f",
       "email": "arvind@gmail.com",
       "password": "aK@12345",
-      "addresses": [],
+      "addresses": [
+        {
+          "name": "Arvind Kumar",
+          "email": "balaji.harsh@koshishindia.in",
+          "phone": "09305373223",
+          "street": "Sector 125",
+          "city": "Mp",
+          "state": "Hariyana",
+          "pinCode": "332222"
+        },
+        {
+          "name": "Shyam",
+          "email": "sh@gmail.com",
+          "phone": "878328738837",
+          "street": "12",
+          "city": "Haryana",
+          "state": "haryana",
+          "pinCode": "872787"
+        },
+        {
+          "name": "sss",
+          "email": "33",
+          "phone": "2332",
+          "street": "3332",
+          "city": "32332",
+          "state": "32332",
+          "pinCode": "23232"
+        },
+        {
+          "name": "dssds",
+          "email": "dssdsdd@gmail.com",
+          "phone": "22121877",
+          "street": "2237827",
+          "city": "83787",
+          "state": "8777``",
+          "pinCode": "787"
+        }
+      ],
       "role": "user"
     },
     {
@@ -2479,6 +2509,39 @@
       "password": "sM@12345",
       "addresses": [],
       "role": "user"
+    }
+  ],
+  "cart": [
+    {
+      "id": "2",
+      "title": "iPhone X",
+      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+      "price": 899,
+      "discountPercentage": 17.94,
+      "rating": 4.44,
+      "stock": 34,
+      "brand": "Apple",
+      "category": "smartphones",
+      "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/2/1.jpg",
+        "https://cdn.dummyjson.com/product-images/2/2.jpg",
+        "https://cdn.dummyjson.com/product-images/2/3.jpg",
+        "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+      ],
+      "productId": "2",
+      "user": "e77f",
+      "color": {
+        "name": "White",
+        "class": "bg-white",
+        "selectedClass": "ring-gray-400"
+      },
+      "size": {
+        "name": "S",
+        "inStock": true
+      },
+      "quantity": 1,
+      "sellingPrice": 737
     }
   ],
   "total": [

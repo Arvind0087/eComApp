@@ -5,6 +5,7 @@ import {
   getAllCategoriesAsync,
   getAllBrandsAsync,
   // getTotalProductCountAsync,
+  getProductByIdAsync,
 } from "./product.async";
 
 const initialState = {
@@ -14,8 +15,8 @@ const initialState = {
   filterProduct: [],
   categories: [],
   brands: [],
-  // totalProdLoader: false,
-  // totalProdCount: "",
+  productByIdLoader: false,
+  productById: [],
 };
 
 export const productSlice = createSlice({
@@ -87,6 +88,24 @@ export const productSlice = createSlice({
       isAnyOf(getAllBrandsAsync.rejected),
       (state, action) => {
         state.productLoader = false;
+      }
+    );
+
+
+    builder.addMatcher(isAnyOf(getProductByIdAsync.pending), (state) => {
+      state.productByIdLoader = true;
+    });
+    builder.addMatcher(
+      isAnyOf(getProductByIdAsync.fulfilled),
+      (state, action) => {
+        state.productByIdLoader = false;
+        state.productById = action.payload;
+      }
+    );
+    builder.addMatcher(
+      isAnyOf(getProductByIdAsync.rejected),
+      (state, action) => {
+        state.productByIdLoader = false;
       }
     );
 

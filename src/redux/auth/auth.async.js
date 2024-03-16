@@ -33,3 +33,10 @@ export const getAllUserAsync = createAsyncThunk(
     return await AxiosClient("GET", `/users`, [], toolkit);
   }
 );
+
+export const getUserByIdAsync = createAsyncThunk(
+  "user/getUserById",
+  async (payload, toolkit) => {
+    return await AxiosClient("GET", `/users/${payload.id}`, [], toolkit);
+  }
+);

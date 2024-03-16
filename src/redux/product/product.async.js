@@ -57,3 +57,10 @@ export const getAllBrandsAsync = createAsyncThunk(
     return await AxiosClient("GET", `/brands`, [], toolkit);
   }
 );
+
+export const getProductByIdAsync = createAsyncThunk(
+  "user/getProductById",
+  async (payload, toolkit) => {
+    return await AxiosClient("GET", `/products?id=${payload.id}`, [], toolkit);
+  }
+);

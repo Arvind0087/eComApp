@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { Link } from "react-router-dom";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
+import { getProductByIdAsync } from "../../redux/product/product.async";
+import {
+  addToCartAsync,
+  getItemsByUserIdAsync,
+} from "../../redux/cart/cart.async";
+
+import { useDispatch, useSelector } from "react-redux";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -63,8 +70,68 @@ function classNames(...classes) {
 }
 
 function ProductDetail() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { productById } = useSelector((state) => state.product);
+  const { cartData, getItemsByUser } = useSelector((state) => state.cart);
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const [productId, setProductId] = useState(null);
+
+  useEffect(() => {
+    const payload = {
+      id: id,
+    };
+    if (id) {
+      dispatch(getProductByIdAsync(payload));
+    }
+  }, [id]);
+
+  useEffect(() => {
+    const payload = {
+      id: currentUser?.id,
+    };
+    dispatch(getItemsByUserIdAsync(payload));
+  }, [productId]);
+
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
+
+  const discountedPrice = Math.floor(
+    productById[0]?.price * (1 - productById[0]?.discountPercentage / 100)
+  );
+
+  const handleCart = (e) => {
+    e.preventDefault();
+    setProductId(productById[0]?.id);
+    if (
+      getItemsByUser.findIndex(
+        (item) => item?.productId == productById[0]?.id
+      ) < 0
+    ) {
+      const newItem = {
+        productId: productById[0]?.id,
+        user: currentUser?.id,
+      };
+
+      if (selectedColor) {
+        newItem.color = selectedColor;
+      }
+      if (selectedSize) {
+        newItem.size = selectedSize;
+      }
+
+      const payload = {
+        ...productById[0],
+        ...newItem,
+        quantity: 1,
+        sellingPrice: discountedPrice,
+      };
+
+      dispatch(addToCartAsync(payload));
+    } else {
+      alert("item is already added");
+    }
+  };
 
   return (
     <div className="bg-white">
@@ -113,31 +180,31 @@ function ProductDetail() {
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
           <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
             <img
-              src={product.images[0].src}
-              alt={product.images[0].alt}
+              src={productById[0]?.images[0]}
+              alt={productById[0]?.title}
               className="h-full w-full object-cover object-center"
             />
           </div>
           <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
               <img
-                src={product.images[1].src}
-                alt={product.images[1].alt}
+                src={productById[0]?.images[1]}
+                alt={productById[0]?.title}
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
               <img
-                src={product.images[2].src}
-                alt={product.images[2].alt}
+                src={productById[0]?.images[2]}
+                alt={productById[0]?.title}
                 className="h-full w-full object-cover object-center"
               />
             </div>
           </div>
           <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
             <img
-              src={product.images[3].src}
-              alt={product.images[3].alt}
+              src={productById[0]?.images[3]}
+              alt={productById[0]?.title}
               className="h-full w-full object-cover object-center"
             />
           </div>
@@ -147,15 +214,18 @@ function ProductDetail() {
         <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
           <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
             <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-              {product.name}
+              {productById[0]?.title}
             </h1>
           </div>
 
           {/* Options */}
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h2 className="sr-only">Product information</h2>
+            <p className="text-xl line-through tracking-tight text-gray-900">
+              ${productById[0]?.price}
+            </p>
             <p className="text-3xl tracking-tight text-gray-900">
-              {product.price}
+              ${discountedPrice}
             </p>
 
             {/* Reviews */}
@@ -167,7 +237,7 @@ function ProductDetail() {
                     <StarIcon
                       key={rating}
                       className={classNames(
-                        reviews.average > rating
+                        productById[0]?.rating > rating
                           ? "text-gray-900"
                           : "text-gray-200",
                         "h-5 w-5 flex-shrink-0"
@@ -176,7 +246,9 @@ function ProductDetail() {
                     />
                   ))}
                 </div>
-                <p className="sr-only">{reviews.average} out of 5 stars</p>
+                <p className="sr-only">
+                  {productById[0]?.rating} out of 5 stars
+                </p>
                 <a
                   href={reviews.href}
                   className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
@@ -313,9 +385,10 @@ function ProductDetail() {
 
               <button
                 type="submit"
+                onClick={handleCart}
                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
-                Add to bag
+                Add to cart
               </button>
             </form>
           </div>
@@ -326,7 +399,9 @@ function ProductDetail() {
               <h3 className="sr-only">Description</h3>
 
               <div className="space-y-6">
-                <p className="text-base text-gray-900">{product.description}</p>
+                <p className="text-base text-gray-900">
+                  {productById[0]?.description}
+                </p>
               </div>
             </div>
 

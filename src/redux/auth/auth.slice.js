@@ -3,6 +3,7 @@ import {
   createUserAsync,
   validateUserAsync,
   getAllUserAsync,
+  getUserByIdAsync,
 } from "./auth.async";
 
 const initialState = {
@@ -12,6 +13,8 @@ const initialState = {
   validateUser: [],
   allUerLoader: false,
   getUsers: [],
+  getUserByIdLoader: false,
+  getUserById: [],
 };
 
 export const authSlice = createSlice({
@@ -52,6 +55,17 @@ export const authSlice = createSlice({
     });
     builder.addMatcher(isAnyOf(getAllUserAsync.rejected), (state, action) => {
       state.allUerLoader = false;
+    });
+
+    builder.addMatcher(isAnyOf(getUserByIdAsync.pending), (state) => {
+      state.getUserByIdLoader = true;
+    });
+    builder.addMatcher(isAnyOf(getUserByIdAsync.fulfilled), (state, action) => {
+      state.getUserByIdLoader = false;
+      state.getUserById = action.payload;
+    });
+    builder.addMatcher(isAnyOf(getUserByIdAsync.rejected), (state, action) => {
+      state.getUserByIdLoader = false;
     });
   },
   reducers: {

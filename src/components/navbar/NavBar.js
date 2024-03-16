@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import logoImg from "../../assets/images/logo.png";
+import { getItemsByUserIdAsync } from "../../redux/cart/cart.async";
+import { useDispatch, useSelector } from "react-redux";
+
 import {
   Bars3Icon,
   ShoppingCartIcon,
@@ -24,9 +27,9 @@ const navigation = [
 ];
 
 const userNavigation = [
-  { name: 'My Profile', link: '/profile' },
-  { name: 'My Orders', link: '/my-orders' },
-  { name: 'Sign out', link: '/logout' },
+  { name: "My Profile", link: "/profile" },
+  { name: "My Orders", link: "/my-orders" },
+  { name: "Sign out", link: "/logout" },
 ];
 
 function classNames(...classes) {
@@ -34,6 +37,17 @@ function classNames(...classes) {
 }
 
 function NavBar({ children }) {
+  const dispatch = useDispatch();
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const { getItemsByUser } = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    const payload = {
+      id: currentUser?.id,
+    };
+    dispatch(getItemsByUserIdAsync(payload));
+  }, []);
+
   return (
     <>
       <div className="min-h-full">
@@ -86,8 +100,9 @@ function NavBar({ children }) {
                         </button>
                       </Link>
                       <span className="inline-flex items-center rounded-md mb-7 -ml-3 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10 z-10">
-                        1
+                        <Link to="/cart">{getItemsByUser?.length}</Link>
                       </span>
+
                       {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
                         <div>
@@ -201,7 +216,7 @@ function NavBar({ children }) {
                       </button>
                     </Link>
                     <span className="inline-flex items-center rounded-md bg-red-50 mb-7 -ml-3 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10 z-10">
-                      1
+                      <Link to="/cart">{getItemsByUser?.length}</Link>
                     </span>
                   </div>
                   <div className="mt-3 space-y-1 px-2">
