@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { getProductByIdAsync } from "../../redux/product/product.async";
 import {
@@ -70,6 +70,7 @@ function classNames(...classes) {
 }
 
 function ProductDetail() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
   const { productById } = useSelector((state) => state.product);
@@ -127,7 +128,11 @@ function ProductDetail() {
         sellingPrice: discountedPrice,
       };
 
-      dispatch(addToCartAsync(payload));
+      dispatch(addToCartAsync(payload)).then((res) => {
+        if (res?.payload) {
+          navigate("/");
+        }
+      });
     } else {
       alert("item is already added");
     }

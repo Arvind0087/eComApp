@@ -10,6 +10,8 @@ import {
   Profile,
   Orders,
   Logout,
+  OrderSuccess,
+  StripeCheckout,
 } from "./elements";
 import Protected from "../components/Protected";
 
@@ -71,6 +73,22 @@ export const routerList = createBrowserRouter([
     element: (
       <Protected>
         <Orders></Orders>
+      </Protected>
+    ),
+  },
+  {
+    path: "/order-success/:id",
+    element: (
+      <Protected>
+        <OrderSuccess></OrderSuccess>
+      </Protected>
+    ),
+  },
+  {
+    path: "/stripe-checkout",
+    element: (
+      <Protected>
+        <StripeCheckout></StripeCheckout>
       </Protected>
     ),
   },

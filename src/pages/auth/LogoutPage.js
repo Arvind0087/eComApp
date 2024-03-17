@@ -14,13 +14,19 @@ function LogoutPage() {
     }
   };
   return (
-    <div>
-      <p>Dou you want to logout</p>
-      <div style={{ display: "flex", gap: "10px" }}>
-        <button onClick={() => logoutHandler("yes")}>Yes</button>
-        <button onClick={() => logoutHandler("no")}>No</button>
-      </div>
-    </div>
+    <>
+      <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <div className="text-center">
+          <p className="text-base font-semibold text-indigo-600">
+            Dou you want to logout
+          </p>
+          <div style={{ display: "flex", gap: "10px" }}>
+            <button onClick={() => logoutHandler("yes")}>Yes</button>
+            <button onClick={() => logoutHandler("no")}>No</button>
+          </div>
+        </div>
+      </main>
+    </>
   );
 }
 

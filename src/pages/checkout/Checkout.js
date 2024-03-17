@@ -7,7 +7,8 @@ import {
 } from "../../redux/cart/cart.async";
 import { getUserByIdAsync } from "../../redux/auth/auth.async";
 import { addAddressByUserIdAsync } from "../../redux/checkout/checkout.async";
-
+import { createOrderAsync } from "../../redux/order/order.async";
+import { emptycart } from "../../redux/cart/cart.slice";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -62,12 +63,15 @@ const addresses = [
 
 function Checkout() {
   const { getUserById } = useSelector((state) => state.auth);
+  const { createOrder } = useSelector((state) => state.order);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(true);
-  const { getItemsByUser } = useSelector((state) => state.cart);
+  const { getItemsByUser, cartData } = useSelector((state) => state.cart);
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const [quantity, setQuantity] = useState(1);
   const [totalSum, setTotalSum] = useState(0);
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState(null);
 
   const {
     register,
@@ -122,9 +126,57 @@ function Checkout() {
     });
   };
 
+  const handleAddress = (e) => {
+    setSelectedAddress(getUserById?.addresses[e.target.value]);
+  };
+
+  const handlePayment = (e) => {
+    setPaymentMethod(e.target.value);
+  };
+
+  const resetCartItems = async () => {
+    const deletePromises = getItemsByUser.map((item) =>
+      dispatch(deleteItemByIdAsync({ id: item?.id }))
+    );
+    await Promise.all(deletePromises);
+  };
+
+  const handleOrder = () => {
+    if (selectedAddress && paymentMethod) {
+      const payload = {
+        items: getItemsByUser,
+        totalAmount: totalSum,
+        totalItems: getItemsByUser?.length,
+        user: getUserById,
+        paymentMethod: paymentMethod,
+        selectedAddress: selectedAddress,
+        status: "success", // other status can be delivered, received.
+      };
+      dispatch(createOrderAsync(payload)).then(async (res) => {
+        if (res?.payload) {
+          await resetCartItems();
+        }
+      });
+    } else {
+      alert("Enter Address and Payment method");
+    }
+  };
+
   return (
     <>
-      {!getItemsByUser.length && <Navigate to="/" replace={true}></Navigate>}
+      {/*getItemsByUser?.length === 0 && (
+        <Navigate to="/" replace={true}></Navigate>
+      )*/}
+      {createOrder && createOrder?.paymentMethod === "cash" && (
+        <Navigate
+          to={`/order-success/${createOrder.id}`}
+          replace={true}
+        ></Navigate>
+      )}
+      {createOrder && createOrder?.paymentMethod === "card" && (
+        <Navigate to={`/stripe-checkout/`} replace={true}></Navigate>
+      )}
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
@@ -338,15 +390,17 @@ function Checkout() {
                 Choose from Existing addresses
               </p>
               <ul role="list" className="divide-y divide-gray-100">
-                {getUserById?.addresses?.map((address) => (
+                {getUserById?.addresses?.map((address, index) => (
                   <li
                     key={address?.street + "email"}
                     className="flex justify-between gap-x-6 px-5 py-5"
                   >
                     <div className="flex gap-x-4">
                       <input
+                        onChange={handleAddress}
                         name="address"
                         type="radio"
+                        value={index}
                         className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                       />
                       {/* <img
@@ -387,30 +441,36 @@ function Checkout() {
                   <div className="mt-6 space-y-6">
                     <div className="flex items-center gap-x-3">
                       <input
-                        id="online-payment"
+                        id="cash"
                         name="payments"
+                        onChange={handlePayment}
+                        value="cash"
                         type="radio"
+                        checked={paymentMethod === "cash"}
                         className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                       />
                       <label
-                        htmlFor="online-payment"
+                        htmlFor="cash"
                         className="block text-sm font-medium leading-6 text-gray-900"
                       >
-                        Online
+                        Cash Payment
                       </label>
                     </div>
                     <div className="flex items-center gap-x-3">
                       <input
-                        id="cash-payment"
+                        id="card"
+                        onChange={handlePayment}
                         name="payments"
+                        checked={paymentMethod === "card"}
+                        value="card"
                         type="radio"
                         className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                       />
                       <label
-                        htmlFor="cash-payment"
+                        htmlFor="card"
                         className="block text-sm font-medium leading-6 text-gray-900"
                       >
-                        Cash
+                        Card Payment
                       </label>
                     </div>
                   </div>
@@ -496,16 +556,14 @@ function Checkout() {
                   <p>Total Items in Cart</p>
                   <p>{getItemsByUser?.length} items</p>
                 </div>
-                <p className="mt-0.5 text-sm text-gray-500">
+                <p className="mt-0.5 mb-3 text-sm text-gray-500">
                   Shipping and taxes calculated at checkout.
                 </p>
-                <div className="mt-6">
-                  <Link
-                    to="/checkout"
-                    className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                  >
-                    Order Now
-                  </Link>
+                <div
+                  onClick={handleOrder}
+                  className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                >
+                  Order Now
                 </div>
                 <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                   <Link to="/">

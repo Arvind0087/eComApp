@@ -34,5 +34,15 @@ export const Orders = Loader(lazy(() => import("../pages/orders/Orders")));
 //Logout
 export const Logout = Loader(lazy(() => import("../pages/auth/LogoutPage")));
 
+//order success
+export const OrderSuccess = Loader(
+  lazy(() => import("../pages/orders/OrderSuccess"))
+);
+
+//stripe checkout
+export const StripeCheckout = Loader(
+  lazy(() => import("../pages/orders/StripeCheckout"))
+);
+
 //Page Not found
 export const PageNotFound = Loader(lazy(() => import("../pages/404")));

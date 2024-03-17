@@ -84,10 +84,13 @@ export const cartSlice = createSlice({
     );
   },
   reducers: {
-    emptycart: (state) => initialState,
+    emptycart: (state) => {
+      // emptycart: (state) => initialState,
+      state.cartData = [];
+    },
   },
 });
 
-export const { emptyactivity } = cartSlice.actions;
+export const { emptycart } = cartSlice.actions;
 
 export default cartSlice.reducer;
