@@ -2448,15 +2448,6 @@
           "pinCode": "332222"
         },
         {
-          "name": "Shyam",
-          "email": "sh@gmail.com",
-          "phone": "878328738837",
-          "street": "12",
-          "city": "Haryana",
-          "state": "haryana",
-          "pinCode": "872787"
-        },
-        {
           "name": "sss",
           "email": "33",
           "phone": "2332",
@@ -2504,37 +2495,6 @@
   ],
   "cart": [
     {
-      "id": "2",
-      "title": "iPhone X",
-      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-      "price": 899,
-      "discountPercentage": 17.94,
-      "rating": 4.44,
-      "stock": 34,
-      "brand": "Apple",
-      "category": "smartphones",
-      "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/2/1.jpg",
-        "https://cdn.dummyjson.com/product-images/2/2.jpg",
-        "https://cdn.dummyjson.com/product-images/2/3.jpg",
-        "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
-      ],
-      "productId": "2",
-      "user": "1",
-      "color": {
-        "name": "White",
-        "class": "bg-white",
-        "selectedClass": "ring-gray-400"
-      },
-      "size": {
-        "name": "S",
-        "inStock": true
-      },
-      "quantity": 1,
-      "sellingPrice": 737
-    },
-    {
       "id": "5",
       "title": "Huawei P30",
       "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
@@ -2567,8 +2527,10 @@
   ],
   "orders": [
     {
+      "id": "98e5",
       "items": [
         {
+          "id": "2",
           "title": "iPhone X",
           "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
           "price": 899,
@@ -2577,60 +2539,88 @@
           "stock": 34,
           "brand": "Apple",
           "category": "smartphones",
-          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
           "images": [
-            "https://i.dummyjson.com/data/products/2/1.jpg",
-            "https://i.dummyjson.com/data/products/2/2.jpg",
-            "https://i.dummyjson.com/data/products/2/3.jpg",
-            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+            "https://cdn.dummyjson.com/product-images/2/1.jpg",
+            "https://cdn.dummyjson.com/product-images/2/2.jpg",
+            "https://cdn.dummyjson.com/product-images/2/3.jpg",
+            "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
           ],
-          "quantity": 2,
-          "user": 1,
-          "id": 6
+          "productId": "2",
+          "user": "e77g",
+          "color": {
+            "name": "White",
+            "class": "bg-white",
+            "selectedClass": "ring-gray-400"
+          },
+          "size": {
+            "name": "S",
+            "inStock": true
+          },
+          "quantity": 1,
+          "sellingPrice": 737
         }
       ],
-      "totalAmount": 1798,
-      "totalItems": 2,
+      "totalAmount": 737,
+      "totalItems": 1,
       "user": {
-        "email": "test@gmail.com",
-        "password": "Qwerty123",
+        "id": "e77g",
+        "email": "arvind@gmail.com",
+        "password": "aK@12345",
         "addresses": [
           {
-            "name": "Abhishek R",
-            "email": "test@gmail.com",
-            "phone": "1234567788",
-            "street": "11th Main",
-            "city": "Banaglore",
-            "state": "Karnataka",
-            "pinCode": "560034"
+            "name": "Arvind Kumar",
+            "email": "balaji.harsh@koshishindia.in",
+            "phone": "09305373223",
+            "street": "Sector 125",
+            "city": "Mp",
+            "state": "Hariyana",
+            "pinCode": "332222"
           },
           {
-            "name": "Abhishek R",
-            "email": "test@gmail.com",
-            "phone": "1234567788",
-            "street": "11th Main",
-            "city": "Banaglore",
-            "state": "Karnataka",
-            "pinCode": "560034"
+            "name": "Shyam",
+            "email": "sh@gmail.com",
+            "phone": "878328738837",
+            "street": "12",
+            "city": "Haryana",
+            "state": "haryana",
+            "pinCode": "872787"
+          },
+          {
+            "name": "sss",
+            "email": "33",
+            "phone": "2332",
+            "street": "3332",
+            "city": "32332",
+            "state": "32332",
+            "pinCode": "23232"
+          },
+          {
+            "name": "dssds",
+            "email": "dssdsdd@gmail.com",
+            "phone": "22121877",
+            "street": "2237827",
+            "city": "83787",
+            "state": "8777``",
+            "pinCode": "787"
           }
         ],
-        "id": 1
+        "role": "user"
       },
       "paymentMethod": "cash",
       "selectedAddress": {
-        "name": "Abhishek R",
-        "email": "test@gmail.com",
-        "phone": "1234567788",
-        "street": "11th Main",
-        "city": "Banaglore",
-        "state": "Karnataka",
-        "pinCode": "560034"
+        "name": "Shyam",
+        "email": "sh@gmail.com",
+        "phone": "878328738837",
+        "street": "12",
+        "city": "Haryana",
+        "state": "haryana",
+        "pinCode": "872787"
       },
-      "status": "dispatched",
-      "id": "1"
+      "status": "success"
     },
     {
-      "id": "2eeb",
+      "id": "98e3",
       "items": [
         {
           "id": "2",
@@ -2660,44 +2650,12 @@
             "name": "S",
             "inStock": true
           },
-          "quantity": "2",
+          "quantity": 1,
           "sellingPrice": 737
-        },
-        {
-          "id": "9",
-          "title": "Infinix INBOOK",
-          "description": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
-          "price": 1099,
-          "discountPercentage": 11.83,
-          "rating": 4.54,
-          "stock": 96,
-          "brand": "Infinix",
-          "category": "laptops",
-          "thumbnail": "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg",
-          "images": [
-            "https://cdn.dummyjson.com/product-images/9/1.jpg",
-            "https://cdn.dummyjson.com/product-images/9/2.png",
-            "https://cdn.dummyjson.com/product-images/9/3.png",
-            "https://cdn.dummyjson.com/product-images/9/4.jpg",
-            "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg"
-          ],
-          "productId": "9",
-          "user": "e77f",
-          "color": {
-            "name": "White",
-            "class": "bg-white",
-            "selectedClass": "ring-gray-400"
-          },
-          "size": {
-            "name": "S",
-            "inStock": true
-          },
-          "quantity": 1,
-          "sellingPrice": 968
         }
       ],
-      "totalAmount": 2442,
-      "totalItems": 2,
+      "totalAmount": 737,
+      "totalItems": 1,
       "user": {
         "id": "e77f",
         "email": "arvind@gmail.com",
@@ -2755,26 +2713,120 @@
       "status": "success"
     },
     {
-      "id": "7598",
+      "id": "863e",
       "items": [
         {
-          "id": "10",
-          "title": "HP Pavilion 15-DK1056WM",
-          "description": "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
-          "price": 1099,
-          "discountPercentage": 6.18,
+          "id": "2",
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/2/1.jpg",
+            "https://cdn.dummyjson.com/product-images/2/2.jpg",
+            "https://cdn.dummyjson.com/product-images/2/3.jpg",
+            "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+          ],
+          "productId": "2",
+          "user": "e77f",
+          "color": {
+            "name": "White",
+            "class": "bg-white",
+            "selectedClass": "ring-gray-400"
+          },
+          "size": {
+            "name": "S",
+            "inStock": true
+          },
+          "quantity": 1,
+          "sellingPrice": 737
+        }
+      ],
+      "totalAmount": 737,
+      "totalItems": 1,
+      "user": {
+        "id": "e77f",
+        "email": "arvind@gmail.com",
+        "password": "aK@12345",
+        "addresses": [
+          {
+            "name": "Arvind Kumar",
+            "email": "balaji.harsh@koshishindia.in",
+            "phone": "09305373223",
+            "street": "Sector 125",
+            "city": "Mp",
+            "state": "Hariyana",
+            "pinCode": "332222"
+          },
+          {
+            "name": "Shyam",
+            "email": "sh@gmail.com",
+            "phone": "878328738837",
+            "street": "12",
+            "city": "Haryana",
+            "state": "haryana",
+            "pinCode": "872787"
+          },
+          {
+            "name": "sss",
+            "email": "33",
+            "phone": "2332",
+            "street": "3332",
+            "city": "32332",
+            "state": "32332",
+            "pinCode": "23232"
+          },
+          {
+            "name": "dssds",
+            "email": "dssdsdd@gmail.com",
+            "phone": "22121877",
+            "street": "2237827",
+            "city": "83787",
+            "state": "8777``",
+            "pinCode": "787"
+          }
+        ],
+        "role": "user"
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Shyam",
+        "email": "sh@gmail.com",
+        "phone": "878328738837",
+        "street": "12",
+        "city": "Haryana",
+        "state": "haryana",
+        "pinCode": "872787"
+      },
+      "status": "success"
+    },
+    {
+      "id": "619e",
+      "items": [
+        {
+          "id": "8",
+          "title": "Microsoft Surface Laptop 4",
+          "description": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
+          "price": 1499,
+          "discountPercentage": 10.23,
           "rating": 4.43,
-          "stock": 89,
-          "brand": "HP Pavilion",
+          "stock": 68,
+          "brand": "Microsoft Surface",
           "category": "laptops",
-          "thumbnail": "https://cdn.dummyjson.com/product-images/10/thumbnail.jpeg",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/8/thumbnail.jpg",
           "images": [
-            "https://cdn.dummyjson.com/product-images/10/1.jpg",
-            "https://cdn.dummyjson.com/product-images/10/2.jpg",
-            "https://cdn.dummyjson.com/product-images/10/3.jpg",
-            "https://cdn.dummyjson.com/product-images/10/thumbnail.jpeg"
+            "https://cdn.dummyjson.com/product-images/8/1.jpg",
+            "https://cdn.dummyjson.com/product-images/8/2.jpg",
+            "https://cdn.dummyjson.com/product-images/8/3.jpg",
+            "https://cdn.dummyjson.com/product-images/8/4.jpg",
+            "https://cdn.dummyjson.com/product-images/8/thumbnail.jpg"
           ],
-          "productId": "10",
+          "productId": "8",
           "user": "e77f",
           "color": {
             "name": "White",
@@ -2786,132 +2838,10 @@
             "inStock": true
           },
           "quantity": 1,
-          "sellingPrice": 1031
-        },
-        {
-          "id": "5",
-          "title": "Huawei P30",
-          "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
-          "price": 499,
-          "discountPercentage": 10.58,
-          "rating": 4.09,
-          "stock": 32,
-          "brand": "Huawei",
-          "category": "smartphones",
-          "thumbnail": "https://cdn.dummyjson.com/product-images/5/thumbnail.jpg",
-          "images": [
-            "https://cdn.dummyjson.com/product-images/5/1.jpg",
-            "https://cdn.dummyjson.com/product-images/5/2.jpg",
-            "https://cdn.dummyjson.com/product-images/5/3.jpg"
-          ],
-          "productId": "5",
-          "user": "e77f",
-          "color": {
-            "name": "White",
-            "class": "bg-white",
-            "selectedClass": "ring-gray-400"
-          },
-          "size": {
-            "name": "S",
-            "inStock": true
-          },
-          "quantity": 1,
-          "sellingPrice": 446
+          "sellingPrice": 1345
         }
       ],
-      "totalAmount": 1477,
-      "totalItems": 2,
-      "user": {
-        "id": "e77f",
-        "email": "arvind@gmail.com",
-        "password": "aK@12345",
-        "addresses": [
-          {
-            "name": "Arvind Kumar",
-            "email": "balaji.harsh@koshishindia.in",
-            "phone": "09305373223",
-            "street": "Sector 125",
-            "city": "Mp",
-            "state": "Hariyana",
-            "pinCode": "332222"
-          },
-          {
-            "name": "Shyam",
-            "email": "sh@gmail.com",
-            "phone": "878328738837",
-            "street": "12",
-            "city": "Haryana",
-            "state": "haryana",
-            "pinCode": "872787"
-          },
-          {
-            "name": "sss",
-            "email": "33",
-            "phone": "2332",
-            "street": "3332",
-            "city": "32332",
-            "state": "32332",
-            "pinCode": "23232"
-          },
-          {
-            "name": "dssds",
-            "email": "dssdsdd@gmail.com",
-            "phone": "22121877",
-            "street": "2237827",
-            "city": "83787",
-            "state": "8777``",
-            "pinCode": "787"
-          }
-        ],
-        "role": "user"
-      },
-      "paymentMethod": "card",
-      "selectedAddress": {
-        "name": "Shyam",
-        "email": "sh@gmail.com",
-        "phone": "878328738837",
-        "street": "12",
-        "city": "Haryana",
-        "state": "haryana",
-        "pinCode": "872787"
-      },
-      "status": "success"
-    },
-    {
-      "id": "a20c",
-      "items": [
-        {
-          "id": "5",
-          "title": "Huawei P30",
-          "description": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
-          "price": 499,
-          "discountPercentage": 10.58,
-          "rating": 4.09,
-          "stock": 32,
-          "brand": "Huawei",
-          "category": "smartphones",
-          "thumbnail": "https://cdn.dummyjson.com/product-images/5/thumbnail.jpg",
-          "images": [
-            "https://cdn.dummyjson.com/product-images/5/1.jpg",
-            "https://cdn.dummyjson.com/product-images/5/2.jpg",
-            "https://cdn.dummyjson.com/product-images/5/3.jpg"
-          ],
-          "productId": "5",
-          "user": "e77f",
-          "color": {
-            "name": "White",
-            "class": "bg-white",
-            "selectedClass": "ring-gray-400"
-          },
-          "size": {
-            "name": "S",
-            "inStock": true
-          },
-          "quantity": 1,
-          "sellingPrice": 446
-        }
-      ],
-      "totalAmount": 446,
+      "totalAmount": 1345,
       "totalItems": 1,
       "user": {
         "id": "e77f",
@@ -2926,15 +2856,6 @@
             "city": "Mp",
             "state": "Hariyana",
             "pinCode": "332222"
-          },
-          {
-            "name": "Shyam",
-            "email": "sh@gmail.com",
-            "phone": "878328738837",
-            "street": "12",
-            "city": "Haryana",
-            "state": "haryana",
-            "pinCode": "872787"
           },
           {
             "name": "sss",
@@ -2959,80 +2880,13 @@
       },
       "paymentMethod": "cash",
       "selectedAddress": {
-        "name": "Shyam",
-        "email": "sh@gmail.com",
-        "phone": "878328738837",
-        "street": "12",
-        "city": "Haryana",
-        "state": "haryana",
-        "pinCode": "872787"
-      },
-      "status": "success"
-    },
-    {
-      "id": "93f5",
-      "items": [
-        {
-          "id": "9",
-          "title": "Infinix INBOOK",
-          "description": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
-          "price": 1099,
-          "discountPercentage": 11.83,
-          "rating": 4.54,
-          "stock": 96,
-          "brand": "Infinix",
-          "category": "laptops",
-          "thumbnail": "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg",
-          "images": [
-            "https://cdn.dummyjson.com/product-images/9/1.jpg",
-            "https://cdn.dummyjson.com/product-images/9/2.png",
-            "https://cdn.dummyjson.com/product-images/9/3.png",
-            "https://cdn.dummyjson.com/product-images/9/4.jpg",
-            "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg"
-          ],
-          "productId": "9",
-          "user": "c6f6",
-          "color": {
-            "name": "White",
-            "class": "bg-white",
-            "selectedClass": "ring-gray-400"
-          },
-          "size": {
-            "name": "S",
-            "inStock": true
-          },
-          "quantity": 1,
-          "sellingPrice": 968
-        }
-      ],
-      "totalAmount": 968,
-      "totalItems": 1,
-      "user": {
-        "id": "c6f6",
-        "email": "test@gmail.com",
-        "password": "Test@12345",
-        "addresses": [
-          {
-            "name": "Shyam",
-            "email": "shy@gmail.com",
-            "phone": "9888898398",
-            "street": "a43",
-            "city": "Noida",
-            "state": "Uttar Pradesh",
-            "pinCode": "201301"
-          }
-        ],
-        "role": "user"
-      },
-      "paymentMethod": "cash",
-      "selectedAddress": {
-        "name": "Shyam",
-        "email": "shy@gmail.com",
-        "phone": "9888898398",
-        "street": "a43",
-        "city": "Noida",
-        "state": "Uttar Pradesh",
-        "pinCode": "201301"
+        "name": "dssds",
+        "email": "dssdsdd@gmail.com",
+        "phone": "22121877",
+        "street": "2237827",
+        "city": "83787",
+        "state": "8777``",
+        "pinCode": "787"
       },
       "status": "success"
     }

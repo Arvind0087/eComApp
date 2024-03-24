@@ -1,33 +1,20 @@
-import React from "react";
-import { useNavigate } from "react-router";
+import { useEffect } from "react";
+// import { signOutAsync } from "../authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 function LogoutPage() {
-  const navigate = useNavigate();
+  let user = localStorage.removeItem("user");
 
-  const logoutHandler = (val) => {
-    if (val == "yes") {
-      localStorage.removeItem("user");
-      //   localStorage.clear();
-      navigate("/login");
-    } else {
-      navigate(-1);
-    }
+  const logoutHandler = () => {
+    localStorage.removeItem("user");
   };
-  return (
-    <>
-      <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
-        <div className="text-center">
-          <p className="text-base font-semibold text-indigo-600">
-            Dou you want to logout
-          </p>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <button onClick={() => logoutHandler("yes")}>Yes</button>
-            <button onClick={() => logoutHandler("no")}>No</button>
-          </div>
-        </div>
-      </main>
-    </>
-  );
+
+  useEffect(() => {
+    logoutHandler();
+  });
+
+  return <>{!user && <Navigate to="/login" replace={true}></Navigate>}</>;
 }
 
 export default LogoutPage;

@@ -12,6 +12,7 @@ import {
   Logout,
   OrderSuccess,
   StripeCheckout,
+  OrderHistory,
 } from "./elements";
 import Protected from "../components/Protected";
 
@@ -65,6 +66,14 @@ export const routerList = createBrowserRouter([
     element: (
       <Protected>
         <Profile></Profile>
+      </Protected>
+    ),
+  },
+  {
+    path: "/my-orders",
+    element: (
+      <Protected>
+        <OrderHistory></OrderHistory>
       </Protected>
     ),
   },

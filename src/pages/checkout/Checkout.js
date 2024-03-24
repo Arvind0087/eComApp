@@ -5,10 +5,9 @@ import {
   updateQuantityByIdAsync,
   deleteItemByIdAsync,
 } from "../../redux/cart/cart.async";
-import { getUserByIdAsync } from "../../redux/auth/auth.async";
-import { addAddressByUserIdAsync } from "../../redux/checkout/checkout.async";
+import { getUserByIdAsync } from "../../redux/user/user.async";
+import { updateUserByIdAsync } from "../../redux/user/user.async";
 import { createOrderAsync } from "../../redux/order/order.async";
-import { emptycart } from "../../redux/cart/cart.slice";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -62,11 +61,11 @@ const addresses = [
 ];
 
 function Checkout() {
-  const { getUserById } = useSelector((state) => state.auth);
+  const { getUserById } = useSelector((state) => state.user);
   const { createOrder } = useSelector((state) => state.order);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(true);
-  const { getItemsByUser, cartData } = useSelector((state) => state.cart);
+  const { getItemsByUser } = useSelector((state) => state.cart);
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const [quantity, setQuantity] = useState(1);
   const [totalSum, setTotalSum] = useState(0);
@@ -185,10 +184,10 @@ function Checkout() {
               noValidate
               onSubmit={handleSubmit((data) => {
                 let payload = {
-                  id: currentUser?.id,
-                  address: [...getUserById?.addresses, data],
+                  ...currentUser,
+                  addresses: [...getUserById?.addresses, data],
                 };
-                dispatch(addAddressByUserIdAsync(payload)).then((res) => {
+                dispatch(updateUserByIdAsync(payload)).then((res) => {
                   if (res?.payload) {
                     let payload = {
                       id: currentUser?.id,

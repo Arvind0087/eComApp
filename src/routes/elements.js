@@ -26,13 +26,18 @@ export const ProductDetail = Loader(
 );
 
 //Profile
-export const Profile = Loader(lazy(() => import("../pages/profile/Profile")));
+export const Profile = Loader(lazy(() => import("../pages/user/profile/ProfilePage")));
 
 //Orders
 export const Orders = Loader(lazy(() => import("../pages/orders/Orders")));
 
 //Logout
 export const Logout = Loader(lazy(() => import("../pages/auth/LogoutPage")));
+
+//order Page
+export const OrderHistory = Loader(
+  lazy(() => import("../pages/orders/OrdersPage"))
+);
 
 //order success
 export const OrderSuccess = Loader(

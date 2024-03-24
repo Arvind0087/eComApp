@@ -3,18 +3,13 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
-import {
-  validateUserAsync,
-  getAllUserAsync,
-} from "../../redux/auth/auth.async";
+import { validateUserAsync } from "../../redux/auth/auth.async";
+import { getAllUserAsync } from "../../redux/user/user.async";
 
 function LoginPage() {
   const dispatch = useDispatch();
-  const { createSignup, validateUser, getUsers } = useSelector(
-    (state) => state.auth
-  );
-
+  const { createSignup, validateUser } = useSelector((state) => state.auth);
+  const { getUsers } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   const {

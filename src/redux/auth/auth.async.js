@@ -8,13 +8,6 @@ export const createUserAsync = createAsyncThunk(
   }
 );
 
-export const loginUserAsync = createAsyncThunk(
-  "user/loginUser",
-  async (payload, toolkit) => {
-    return await AxiosClient("POST", `/users`, payload, toolkit);
-  }
-);
-
 export const validateUserAsync = createAsyncThunk(
   "user/validateUser",
   async (payload, toolkit) => {
@@ -24,19 +17,5 @@ export const validateUserAsync = createAsyncThunk(
       [],
       toolkit
     );
-  }
-);
-
-export const getAllUserAsync = createAsyncThunk(
-  "user/getAllUser",
-  async (payload, toolkit) => {
-    return await AxiosClient("GET", `/users`, [], toolkit);
-  }
-);
-
-export const getUserByIdAsync = createAsyncThunk(
-  "user/getUserById",
-  async (payload, toolkit) => {
-    return await AxiosClient("GET", `/users/${payload.id}`, [], toolkit);
   }
 );

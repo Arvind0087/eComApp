@@ -1,20 +1,11 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import {
-  createUserAsync,
-  validateUserAsync,
-  getAllUserAsync,
-  getUserByIdAsync,
-} from "./auth.async";
+import { createUserAsync, validateUserAsync } from "./auth.async";
 
 const initialState = {
   signupLoader: false,
   createSignup: null,
   validateLoadde: false,
   validateUser: [],
-  allUerLoader: false,
-  getUsers: [],
-  getUserByIdLoader: false,
-  getUserById: [],
 };
 
 export const authSlice = createSlice({
@@ -44,28 +35,6 @@ export const authSlice = createSlice({
     );
     builder.addMatcher(isAnyOf(validateUserAsync.rejected), (state, action) => {
       state.validateLoadde = false;
-    });
-
-    builder.addMatcher(isAnyOf(getAllUserAsync.pending), (state) => {
-      state.allUerLoader = true;
-    });
-    builder.addMatcher(isAnyOf(getAllUserAsync.fulfilled), (state, action) => {
-      state.allUerLoader = false;
-      state.getUsers = action.payload;
-    });
-    builder.addMatcher(isAnyOf(getAllUserAsync.rejected), (state, action) => {
-      state.allUerLoader = false;
-    });
-
-    builder.addMatcher(isAnyOf(getUserByIdAsync.pending), (state) => {
-      state.getUserByIdLoader = true;
-    });
-    builder.addMatcher(isAnyOf(getUserByIdAsync.fulfilled), (state, action) => {
-      state.getUserByIdLoader = false;
-      state.getUserById = action.payload;
-    });
-    builder.addMatcher(isAnyOf(getUserByIdAsync.rejected), (state, action) => {
-      state.getUserByIdLoader = false;
     });
   },
   reducers: {
