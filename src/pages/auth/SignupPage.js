@@ -39,7 +39,7 @@ function SignupPage() {
                   email: val.email,
                   password: val.password,
                   addresses: [],
-                  role: "user",
+                  role: "admin",
                 })
               ).then((res) => {
                 if (res.payload) {

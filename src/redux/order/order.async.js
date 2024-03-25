@@ -19,3 +19,33 @@ export const getLoggedInUserOrderAsync = createAsyncThunk(
     );
   }
 );
+
+export const getAllOrdersAsync = createAsyncThunk(
+  "product/getAllOrders",
+  async (payload, toolkit) => {
+    let sort = payload?.sort;
+    let pagination = payload?.pagination;
+    let queryString = "";
+
+    for (let key in sort) {
+      queryString += `${key}=${sort[key]}&`;
+    }
+    for (let key in pagination) {
+      queryString += `${key}=${pagination[key]}&`;
+    }
+
+    return await AxiosClient("GET", "/orders?" + queryString, [], toolkit);
+  }
+);
+
+export const updateOrderAsync = createAsyncThunk(
+  "order/updateOrder",
+  async (payload, toolkit) => {
+    return await AxiosClient(
+      "PATCH",
+      `/orders/${payload.id}`,
+      payload,
+      toolkit
+    );
+  }
+);

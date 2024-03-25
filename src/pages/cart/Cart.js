@@ -177,7 +177,7 @@ const Cart = () => {
             </Link>
           </div>
           <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-            <Link to="/">
+            <Link to={currentUser?.role == "admin" ? "/admin" : "/"}>
               <button
                 type="button"
                 className="font-medium text-indigo-600 hover:text-indigo-500"

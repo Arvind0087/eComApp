@@ -2,8 +2,11 @@ import { Loader } from "../components/Loader";
 import { lazy } from "react";
 
 // Dashboard
-export const Dashboard = Loader(
-  lazy(() => import("../pages/dashboard/Dashboard"))
+export const Home = Loader(lazy(() => import("../pages/dashboard/Dashboard")));
+
+// Admin Home
+export const AdminHome = Loader(
+  lazy(() => import("../pages/admin/AdminHomePage"))
 );
 
 // Login
@@ -25,14 +28,36 @@ export const ProductDetail = Loader(
   lazy(() => import("../pages/product/ProductDetailsPage"))
 );
 
+//Admin Product Details
+export const AdminProductDetailsPage = Loader(
+  lazy(() => import("../pages/admin/AdminProductDetailsPage"))
+);
+
+//Admin Product Form
+export const AdminProductForm = Loader(
+  lazy(() => import("../pages/admin/AdminProductForm.js"))
+);
+
+//Admin Order
+export const AdminOrder = Loader(
+  lazy(() => import("../pages/admin/AdminOrderPage.js"))
+);
+
 //Profile
-export const Profile = Loader(lazy(() => import("../pages/user/profile/ProfilePage")));
+export const Profile = Loader(
+  lazy(() => import("../pages/user/profile/ProfilePage"))
+);
 
 //Orders
 export const Orders = Loader(lazy(() => import("../pages/orders/Orders")));
 
 //Logout
 export const Logout = Loader(lazy(() => import("../pages/auth/LogoutPage")));
+
+//Logout
+export const ForgotPassword = Loader(
+  lazy(() => import("../pages/auth/ForgotPasswordPage"))
+);
 
 //order Page
 export const OrderHistory = Loader(

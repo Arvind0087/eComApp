@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import {
-  Dashboard,
+  Home,
   Login,
   Signup,
   PageNotFound,
@@ -13,26 +13,36 @@ import {
   OrderSuccess,
   StripeCheckout,
   OrderHistory,
+  ForgotPassword,
+  AdminHome,
+  AdminProductDetailsPage,
+  AdminProductForm,
+  AdminOrder,
 } from "./elements";
-import Protected from "../components/Protected";
+import Protected from "../components/auth/Protected";
+import ProtectedAdmin from "../components/auth/ProtectedAdmin";
 
 export const routerList = createBrowserRouter([
   {
     path: "/",
     element: (
       <Protected>
-        <Dashboard></Dashboard>
+        <Home></Home>
       </Protected>
+    ),
+  },
+  {
+    path: "/admin",
+    element: (
+      <ProtectedAdmin>
+        <AdminHome></AdminHome>
+      </ProtectedAdmin>
     ),
   },
   {
     path: "/login",
     element: <Login />,
   },
-  // {
-  //   path: "dashboard",
-  //   element: <Dashboard />,
-  // },
   {
     path: "signup",
     element: <Signup />,
@@ -59,6 +69,38 @@ export const routerList = createBrowserRouter([
       <Protected>
         <ProductDetail></ProductDetail>
       </Protected>
+    ),
+  },
+  {
+    path: "/admin/product-detail/:id",
+    element: (
+      <ProtectedAdmin>
+        <AdminProductDetailsPage></AdminProductDetailsPage>
+      </ProtectedAdmin>
+    ),
+  },
+  {
+    path: "/admin/product-form",
+    element: (
+      <ProtectedAdmin>
+        <AdminProductForm></AdminProductForm>
+      </ProtectedAdmin>
+    ),
+  },
+  {
+    path: "/admin/orders",
+    element: (
+      <ProtectedAdmin>
+        <AdminOrder></AdminOrder>
+      </ProtectedAdmin>
+    ),
+  },
+  {
+    path: "/admin/product-form/edit/:id",
+    element: (
+      <ProtectedAdmin>
+        <AdminProductForm></AdminProductForm>
+      </ProtectedAdmin>
     ),
   },
   {
@@ -108,6 +150,10 @@ export const routerList = createBrowserRouter([
         <Logout></Logout>
       </Protected>
     ),
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword></ForgotPassword>,
   },
   {
     path: "*",

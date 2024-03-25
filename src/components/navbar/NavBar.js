@@ -18,13 +18,6 @@ const user = {
   imageUrl:
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
-const navigation = [{ name: "Products", link: "/" }];
-
-const userNavigation = [
-  { name: "My Profile", link: "/profile" },
-  { name: "My Orders", link: "/my-orders" },
-  { name: "Sign out", link: "/logout" },
-];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -34,6 +27,18 @@ function NavBar({ children }) {
   const dispatch = useDispatch();
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const { getItemsByUser } = useSelector((state) => state.cart);
+
+  const productLink = currentUser?.role == "admin" ? "/admin" : "/";
+  const navigation = [{ name: "Products", link: productLink }];
+
+  const userNavigation = [
+    { name: "My Profile", link: "/profile" },
+    {
+      name: "My Orders",
+      link: currentUser?.role == "admin" ? "/admin/orders" : "/my-orders",
+    },
+    { name: "Sign out", link: "/logout" },
+  ];
 
   useEffect(() => {
     const payload = {

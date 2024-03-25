@@ -4,8 +4,9 @@ import {
   getProductsByFilterAsync,
   getAllCategoriesAsync,
   getAllBrandsAsync,
-  // getTotalProductCountAsync,
   getProductByIdAsync,
+  createProductAsync,
+  updateProductAsync,
 } from "./product.async";
 
 const initialState = {
@@ -17,6 +18,10 @@ const initialState = {
   brands: [],
   productByIdLoader: false,
   productById: [],
+  createProdLoader: false,
+  createProduct: [],
+  updateProdLoader: false,
+  updatedProd: [],
 };
 
 export const productSlice = createSlice({
@@ -84,13 +89,9 @@ export const productSlice = createSlice({
         state.brands = action.payload;
       }
     );
-    builder.addMatcher(
-      isAnyOf(getAllBrandsAsync.rejected),
-      (state, action) => {
-        state.productLoader = false;
-      }
-    );
-
+    builder.addMatcher(isAnyOf(getAllBrandsAsync.rejected), (state, action) => {
+      state.productLoader = false;
+    });
 
     builder.addMatcher(isAnyOf(getProductByIdAsync.pending), (state) => {
       state.productByIdLoader = true;
@@ -109,22 +110,39 @@ export const productSlice = createSlice({
       }
     );
 
-    // builder.addMatcher(isAnyOf(getTotalProductCountAsync.pending), (state) => {
-    //   state.totalProdLoader = true;
-    // });
-    // builder.addMatcher(
-    //   isAnyOf(getTotalProductCountAsync.fulfilled),
-    //   (state, action) => {
-    //     state.totalProdLoader = false;
-    //     state.totalProdCount = action.payload[0]?.totalCount;
-    //   }
-    // );
-    // builder.addMatcher(
-    //   isAnyOf(getTotalProductCountAsync.rejected),
-    //   (state, action) => {
-    //     state.totalProdLoader = false;
-    //   }
-    // );
+    builder.addMatcher(isAnyOf(createProductAsync.pending), (state) => {
+      state.createProdLoader = true;
+    });
+    builder.addMatcher(
+      isAnyOf(createProductAsync.fulfilled),
+      (state, action) => {
+        state.createProdLoader = false;
+        state.createProduct = action.payload;
+      }
+    );
+    builder.addMatcher(
+      isAnyOf(createProductAsync.rejected),
+      (state, action) => {
+        state.createProdLoader = false;
+      }
+    );
+
+    builder.addMatcher(isAnyOf(updateProductAsync.pending), (state) => {
+      state.updateProdLoader = true;
+    });
+    builder.addMatcher(
+      isAnyOf(updateProductAsync.fulfilled),
+      (state, action) => {
+        state.updateProdLoader = false;
+        state.updatedProd = action.payload;
+      }
+    );
+    builder.addMatcher(
+      isAnyOf(updateProductAsync.rejected),
+      (state, action) => {
+        state.updateProdLoader = false;
+      }
+    );
   },
   reducers: {
     emptyactivity: (state) => initialState,

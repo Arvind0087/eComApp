@@ -8,7 +8,6 @@ import { getAllUserAsync } from "../../redux/user/user.async";
 
 function LoginPage() {
   const dispatch = useDispatch();
-  const { createSignup, validateUser } = useSelector((state) => state.auth);
   const { getUsers } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
@@ -46,7 +45,11 @@ function LoginPage() {
             });
 
             if (checkEmailPassword) {
-              navigate("/");
+              if (filterCurrentUser[0]?.role == "admin") {
+                navigate("/admin");
+              } else {
+                navigate("/");
+              }
             } else {
               alert("User Id or password is not matching!");
             }

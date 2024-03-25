@@ -2,7 +2,7 @@
   "products": [
     {
       "id": "1",
-      "title": "iPhone 9",
+      "title": "iPhone 9 Pro",
       "description": "An apple mobile which is nothing like apple",
       "price": 549,
       "discountPercentage": 12.96,
@@ -15,9 +15,9 @@
         "https://cdn.dummyjson.com/product-images/1/1.jpg",
         "https://cdn.dummyjson.com/product-images/1/2.jpg",
         "https://cdn.dummyjson.com/product-images/1/3.jpg",
-        "https://cdn.dummyjson.com/product-images/1/4.jpg",
         "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
-      ]
+      ],
+      "deleted": true
     },
     {
       "id": "2",
@@ -35,7 +35,8 @@
         "https://cdn.dummyjson.com/product-images/2/2.jpg",
         "https://cdn.dummyjson.com/product-images/2/3.jpg",
         "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
-      ]
+      ],
+      "deleted": true
     },
     {
       "id": "3",
@@ -67,7 +68,6 @@
         "https://cdn.dummyjson.com/product-images/4/1.jpg",
         "https://cdn.dummyjson.com/product-images/4/2.jpg",
         "https://cdn.dummyjson.com/product-images/4/3.jpg",
-        "https://cdn.dummyjson.com/product-images/4/4.jpg",
         "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"
       ]
     },
@@ -141,7 +141,8 @@
         "https://cdn.dummyjson.com/product-images/8/3.jpg",
         "https://cdn.dummyjson.com/product-images/8/4.jpg",
         "https://cdn.dummyjson.com/product-images/8/thumbnail.jpg"
-      ]
+      ],
+      "deleted": true
     },
     {
       "id": "9",
@@ -182,12 +183,12 @@
     },
     {
       "id": "11",
-      "title": "perfume Oil",
+      "title": "Perfume Oil",
       "description": "Mega Discount, Impression of Acqua Di Gio by GiorgioArmani concentrated attar perfume Oil",
       "price": 13,
       "discountPercentage": 8.4,
       "rating": 4.26,
-      "stock": 65,
+      "stock": 34,
       "brand": "Impression of Acqua Di Gio",
       "category": "fragrances",
       "thumbnail": "https://cdn.dummyjson.com/product-images/11/thumbnail.jpg",
@@ -1838,6 +1839,24 @@
         "https://cdn.dummyjson.com/product-images/100/3.jpg",
         "https://cdn.dummyjson.com/product-images/100/thumbnail.jpg"
       ]
+    },
+    {
+      "id": "da4a",
+      "title": "Dummy Prod 1",
+      "description": "Dummy Prod 1 Desc",
+      "brand": "Apple",
+      "category": "laptops",
+      "price": 222,
+      "discountPercentage": 14,
+      "stock": 44,
+      "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/1/1.jpg",
+        "https://cdn.dummyjson.com/product-images/1/2.jpg",
+        "https://cdn.dummyjson.com/product-images/1/3.jpg",
+        "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
+      ],
+      "rating": 0
     }
   ],
   "brands": [
@@ -2448,15 +2467,6 @@
           "pinCode": "332222"
         },
         {
-          "name": "sss",
-          "email": "33",
-          "phone": "2332",
-          "street": "3332",
-          "city": "32332",
-          "state": "32332",
-          "pinCode": "23232"
-        },
-        {
           "name": "dssds",
           "email": "dssdsdd@gmail.com",
           "phone": "22121877",
@@ -2491,6 +2501,40 @@
         }
       ],
       "role": "user"
+    },
+    {
+      "id": "94cb",
+      "email": "admin@gmail.com",
+      "password": "aDmin@123",
+      "addresses": [
+        {
+          "name": "Satyam",
+          "email": "sat23@gmail.com",
+          "phone": "3939892892",
+          "street": "a98",
+          "city": "Noida",
+          "state": "UP",
+          "pinCode": "387877"
+        }
+      ],
+      "role": "admin"
+    },
+    {
+      "id": "dec7",
+      "email": "raju@gmail.com",
+      "password": "Raj@12345",
+      "addresses": [
+        {
+          "name": "Raju Singh",
+          "email": "raju7767@gmail.com",
+          "phone": "7827322",
+          "street": "A99 Sector 45",
+          "city": "Noida",
+          "state": "Up",
+          "pinCode": "8787878"
+        }
+      ],
+      "role": "admin"
     }
   ],
   "cart": [
@@ -2523,6 +2567,98 @@
       },
       "quantity": 1,
       "sellingPrice": 446
+    },
+    {
+      "id": "82",
+      "title": "Kabir Singh Square Sunglass",
+      "description": "Orignal Metal Kabir Singh design 2020 Sunglasses Men Brand Designer Sun Glasses Kabir Singh Square Sunglass",
+      "price": 50,
+      "discountPercentage": 15.6,
+      "rating": 4.62,
+      "stock": 78,
+      "brand": "Designer Sun Glasses",
+      "category": "sunglasses",
+      "thumbnail": "https://cdn.dummyjson.com/product-images/82/thumbnail.jpg",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/82/1.jpg",
+        "https://cdn.dummyjson.com/product-images/82/2.webp",
+        "https://cdn.dummyjson.com/product-images/82/3.jpg",
+        "https://cdn.dummyjson.com/product-images/82/4.jpg",
+        "https://cdn.dummyjson.com/product-images/82/thumbnail.jpg"
+      ],
+      "productId": "82",
+      "user": "94cb",
+      "color": {
+        "name": "White",
+        "class": "bg-white",
+        "selectedClass": "ring-gray-400"
+      },
+      "size": {
+        "name": "S",
+        "inStock": true
+      },
+      "quantity": 1,
+      "sellingPrice": 42
+    },
+    {
+      "id": "3",
+      "title": "Samsung Universe 9",
+      "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+      "price": 1249,
+      "discountPercentage": 15.46,
+      "rating": 4.09,
+      "stock": 36,
+      "brand": "Samsung",
+      "category": "smartphones",
+      "thumbnail": "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/3/1.jpg"
+      ],
+      "productId": "3",
+      "user": "94cb",
+      "color": {
+        "name": "White",
+        "class": "bg-white",
+        "selectedClass": "ring-gray-400"
+      },
+      "size": {
+        "name": "S",
+        "inStock": true
+      },
+      "quantity": 1,
+      "sellingPrice": 1055
+    },
+    {
+      "id": "2",
+      "title": "iPhone X",
+      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+      "price": 899,
+      "discountPercentage": 17.94,
+      "rating": 4.44,
+      "stock": 34,
+      "brand": "Apple",
+      "category": "smartphones",
+      "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+      "images": [
+        "https://cdn.dummyjson.com/product-images/2/1.jpg",
+        "https://cdn.dummyjson.com/product-images/2/2.jpg",
+        "https://cdn.dummyjson.com/product-images/2/3.jpg",
+        "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+      ],
+      "deleted": true,
+      "productId": "2",
+      "user": "dec7",
+      "color": {
+        "name": "White",
+        "class": "bg-white",
+        "selectedClass": "ring-gray-400"
+      },
+      "size": {
+        "name": "S",
+        "inStock": true
+      },
+      "quantity": 1,
+      "sellingPrice": 737
     }
   ],
   "orders": [
@@ -2617,7 +2753,7 @@
         "state": "haryana",
         "pinCode": "872787"
       },
-      "status": "success"
+      "status": "cancelled"
     },
     {
       "id": "98e3",
@@ -2710,7 +2846,7 @@
         "state": "haryana",
         "pinCode": "872787"
       },
-      "status": "success"
+      "status": "cancelled"
     },
     {
       "id": "863e",
@@ -2803,7 +2939,7 @@
         "state": "haryana",
         "pinCode": "872787"
       },
-      "status": "success"
+      "status": "dispatched"
     },
     {
       "id": "619e",
@@ -2887,6 +3023,171 @@
         "city": "83787",
         "state": "8777``",
         "pinCode": "787"
+      },
+      "status": "success"
+    },
+    {
+      "id": "2118",
+      "items": [
+        {
+          "id": "2",
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/2/1.jpg",
+            "https://cdn.dummyjson.com/product-images/2/2.jpg",
+            "https://cdn.dummyjson.com/product-images/2/3.jpg",
+            "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+          ],
+          "productId": "2",
+          "user": "94cb",
+          "color": {
+            "name": "White",
+            "class": "bg-white",
+            "selectedClass": "ring-gray-400"
+          },
+          "size": {
+            "name": "S",
+            "inStock": true
+          },
+          "quantity": 1,
+          "sellingPrice": 737
+        }
+      ],
+      "totalAmount": 737,
+      "totalItems": 1,
+      "user": {
+        "id": "94cb",
+        "email": "admin@gmail.com",
+        "password": "aDmin@123",
+        "addresses": [
+          {
+            "name": "Satyam",
+            "email": "sat23@gmail.com",
+            "phone": "3939892892",
+            "street": "a98",
+            "city": "Noida",
+            "state": "UP",
+            "pinCode": "387877"
+          }
+        ],
+        "role": "admin"
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Satyam",
+        "email": "sat23@gmail.com",
+        "phone": "3939892892",
+        "street": "a98",
+        "city": "Noida",
+        "state": "UP",
+        "pinCode": "387877"
+      },
+      "status": "success"
+    },
+    {
+      "id": "f4c1",
+      "items": [
+        {
+          "id": "2",
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/2/1.jpg",
+            "https://cdn.dummyjson.com/product-images/2/2.jpg",
+            "https://cdn.dummyjson.com/product-images/2/3.jpg",
+            "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+          ],
+          "deleted": true,
+          "productId": "2",
+          "user": "dec7",
+          "color": {
+            "name": "White",
+            "class": "bg-white",
+            "selectedClass": "ring-gray-400"
+          },
+          "size": {
+            "name": "S",
+            "inStock": true
+          },
+          "quantity": 1,
+          "sellingPrice": 737
+        },
+        {
+          "id": "9",
+          "title": "Infinix INBOOK",
+          "description": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
+          "price": 1099,
+          "discountPercentage": 11.83,
+          "rating": 4.54,
+          "stock": 96,
+          "brand": "Infinix",
+          "category": "laptops",
+          "thumbnail": "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg",
+          "images": [
+            "https://cdn.dummyjson.com/product-images/9/1.jpg",
+            "https://cdn.dummyjson.com/product-images/9/2.png",
+            "https://cdn.dummyjson.com/product-images/9/3.png",
+            "https://cdn.dummyjson.com/product-images/9/4.jpg",
+            "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg"
+          ],
+          "productId": "9",
+          "user": "dec7",
+          "color": {
+            "name": "White",
+            "class": "bg-white",
+            "selectedClass": "ring-gray-400"
+          },
+          "size": {
+            "name": "S",
+            "inStock": true
+          },
+          "quantity": 1,
+          "sellingPrice": 968
+        }
+      ],
+      "totalAmount": 1705,
+      "totalItems": 2,
+      "user": {
+        "id": "dec7",
+        "email": "raju@gmail.com",
+        "password": "Raj@12345",
+        "addresses": [
+          {
+            "name": "Raju Singh",
+            "email": "raju7767@gmail.com",
+            "phone": "7827322",
+            "street": "A99 Sector 45",
+            "city": "Noida",
+            "state": "Up",
+            "pinCode": "8787878"
+          }
+        ],
+        "role": "admin"
+      },
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "Raju Singh",
+        "email": "raju7767@gmail.com",
+        "phone": "7827322",
+        "street": "A99 Sector 45",
+        "city": "Noida",
+        "state": "Up",
+        "pinCode": "8787878"
       },
       "status": "success"
     }
