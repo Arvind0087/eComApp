@@ -4,6 +4,7 @@ import { RadioGroup } from "@headlessui/react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { getProductByIdAsync } from "../../redux/product/product.async";
+import { Grid } from "react-loader-spinner";
 import {
   addToCartAsync,
   getItemsByUserIdAsync,
@@ -73,7 +74,7 @@ function ProductDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { productById } = useSelector((state) => state.product);
+  const { productById, filterLoader } = useSelector((state) => state.product);
   const { cartData, getItemsByUser } = useSelector((state) => state.cart);
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const [productId, setProductId] = useState(null);
@@ -140,6 +141,19 @@ function ProductDetail() {
 
   return (
     <div className="bg-white">
+      {filterLoader == true ? (
+        <Grid
+          height="80"
+          width="80"
+          color="rgb(79, 70, 229) "
+          ariaLabel="grid-loading"
+          radius="12.5"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      ) : null}
+
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol

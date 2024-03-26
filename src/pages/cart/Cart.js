@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import { Grid } from "react-loader-spinner";
 import {
   getItemsByUserIdAsync,
   updateQuantityByIdAsync,
@@ -9,6 +10,7 @@ import {
 } from "../../redux/cart/cart.async";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import Modal from "../../components/common/Modal";
 
 const products = [
   {
@@ -40,7 +42,8 @@ const products = [
 const Cart = () => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(true);
-  const { getItemsByUser } = useSelector((state) => state.cart);
+  const [openModal, setOpenModal] = useState(null);
+  const { getItemsByUser, cartLoader } = useSelector((state) => state.cart);
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const [quantity, setQuantity] = useState(1);
 
@@ -71,7 +74,7 @@ const Cart = () => {
     setTotalSum(sum);
   }, [getItemsByUser]);
 
-  const removeItem = (prodId) => {
+  const removeItem = (e, prodId) => {
     const payload = {
       id: prodId,
     };
@@ -94,6 +97,19 @@ const Cart = () => {
             Cart
           </h1>
           <div className="flow-root">
+            {cartLoader == true ? (
+              <Grid
+                height="80"
+                width="80"
+                color="rgb(79, 70, 229)"
+                ariaLabel="grid-loading"
+                radius="12.5"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            ) : null}
+
             <ul role="list" className="-my-6 divide-y divide-gray-200">
               {getItemsByUser?.map((product) => (
                 <li key={product?.id} className="flex py-6">
@@ -140,9 +156,19 @@ const Cart = () => {
                       </div>
 
                       <div className="flex">
+                        <Modal
+                          title={`Delete ${product?.title}`}
+                          message="Are you sure you want to delete this Cart item?"
+                          dangerOption="Delete"
+                          cancelOption="Cancel"
+                          dangerAction={(e) => removeItem(e, product?.id)}
+                          cancelAction={() => setOpenModal(null)}
+                          showModal={openModal === product?.id}
+                        ></Modal>
+
                         <button
                           type="button"
-                          onClick={(e) => removeItem(product?.id)}
+                          onClick={(e) => setOpenModal(product?.id)}
                           className="font-medium text-indigo-600 hover:text-indigo-500"
                         >
                           Remove

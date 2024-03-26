@@ -37,8 +37,14 @@ export default function ProductList() {
   const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  const { productLoader, productData, totalProdCount, categories, brands } =
-    useSelector((product) => product.product);
+  const {
+    productLoader,
+    productData,
+    totalProdCount,
+    categories,
+    brands,
+    filterLoader,
+  } = useSelector((product) => product.product);
 
   // const categories = products?.map((product) => product?.category);
   // const uniqueCategories = [...new Set(categories)]?.map((c) => ({

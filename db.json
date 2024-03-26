@@ -51,7 +51,8 @@
       "thumbnail": "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
       "images": [
         "https://cdn.dummyjson.com/product-images/3/1.jpg"
-      ]
+      ],
+      "deleted": true
     },
     {
       "id": "4",
@@ -2489,17 +2490,7 @@
       "id": "c6f6",
       "email": "test@gmail.com",
       "password": "Test@12345",
-      "addresses": [
-        {
-          "name": "Shyam",
-          "email": "shy@gmail.com",
-          "phone": "9888898398",
-          "street": "a43",
-          "city": "Noida",
-          "state": "Uttar Pradesh",
-          "pinCode": "201301"
-        }
-      ],
+      "addresses": [],
       "role": "user"
     },
     {
@@ -2567,130 +2558,6 @@
       },
       "quantity": 1,
       "sellingPrice": 446
-    },
-    {
-      "id": "82",
-      "title": "Kabir Singh Square Sunglass",
-      "description": "Orignal Metal Kabir Singh design 2020 Sunglasses Men Brand Designer Sun Glasses Kabir Singh Square Sunglass",
-      "price": 50,
-      "discountPercentage": 15.6,
-      "rating": 4.62,
-      "stock": 78,
-      "brand": "Designer Sun Glasses",
-      "category": "sunglasses",
-      "thumbnail": "https://cdn.dummyjson.com/product-images/82/thumbnail.jpg",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/82/1.jpg",
-        "https://cdn.dummyjson.com/product-images/82/2.webp",
-        "https://cdn.dummyjson.com/product-images/82/3.jpg",
-        "https://cdn.dummyjson.com/product-images/82/4.jpg",
-        "https://cdn.dummyjson.com/product-images/82/thumbnail.jpg"
-      ],
-      "productId": "82",
-      "user": "94cb",
-      "color": {
-        "name": "White",
-        "class": "bg-white",
-        "selectedClass": "ring-gray-400"
-      },
-      "size": {
-        "name": "S",
-        "inStock": true
-      },
-      "quantity": 1,
-      "sellingPrice": 42
-    },
-    {
-      "id": "3",
-      "title": "Samsung Universe 9",
-      "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
-      "price": 1249,
-      "discountPercentage": 15.46,
-      "rating": 4.09,
-      "stock": 36,
-      "brand": "Samsung",
-      "category": "smartphones",
-      "thumbnail": "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/3/1.jpg"
-      ],
-      "productId": "3",
-      "user": "94cb",
-      "color": {
-        "name": "White",
-        "class": "bg-white",
-        "selectedClass": "ring-gray-400"
-      },
-      "size": {
-        "name": "S",
-        "inStock": true
-      },
-      "quantity": 1,
-      "sellingPrice": 1055
-    },
-    {
-      "id": "2",
-      "title": "iPhone X",
-      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-      "price": 899,
-      "discountPercentage": 17.94,
-      "rating": 4.44,
-      "stock": 34,
-      "brand": "Apple",
-      "category": "smartphones",
-      "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/2/1.jpg",
-        "https://cdn.dummyjson.com/product-images/2/2.jpg",
-        "https://cdn.dummyjson.com/product-images/2/3.jpg",
-        "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
-      ],
-      "deleted": true,
-      "productId": "2",
-      "user": "dec7",
-      "color": {
-        "name": "White",
-        "class": "bg-white",
-        "selectedClass": "ring-gray-400"
-      },
-      "size": {
-        "name": "S",
-        "inStock": true
-      },
-      "quantity": 1,
-      "sellingPrice": 737
-    },
-    {
-      "id": "1",
-      "title": "iPhone 9 Pro",
-      "description": "An apple mobile which is nothing like apple",
-      "price": 549,
-      "discountPercentage": 12.96,
-      "rating": 4.69,
-      "stock": 94,
-      "brand": "Apple",
-      "category": "smartphones",
-      "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
-      "images": [
-        "https://cdn.dummyjson.com/product-images/1/1.jpg",
-        "https://cdn.dummyjson.com/product-images/1/2.jpg",
-        "https://cdn.dummyjson.com/product-images/1/3.jpg",
-        "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
-      ],
-      "deleted": true,
-      "productId": "1",
-      "user": "94cb",
-      "color": {
-        "name": "White",
-        "class": "bg-white",
-        "selectedClass": "ring-gray-400"
-      },
-      "size": {
-        "name": "S",
-        "inStock": true
-      },
-      "quantity": 1,
-      "sellingPrice": 477
     }
   ],
   "orders": [

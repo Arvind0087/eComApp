@@ -33,53 +33,53 @@ export const cartSlice = createSlice({
     });
 
     builder.addMatcher(isAnyOf(getItemsByUserIdAsync.pending), (state) => {
-      state.itemsByUserLoader = true;
+      state.cartLoader = true;
     });
     builder.addMatcher(
       isAnyOf(getItemsByUserIdAsync.fulfilled),
       (state, action) => {
-        state.itemsByUserLoader = false;
+        state.cartLoader = false;
         state.getItemsByUser = action.payload;
       }
     );
     builder.addMatcher(
       isAnyOf(getItemsByUserIdAsync.rejected),
       (state, action) => {
-        state.itemsByUserLoader = false;
+        state.cartLoader = false;
       }
     );
 
     builder.addMatcher(isAnyOf(updateQuantityByIdAsync.pending), (state) => {
-      state.updateQuantityLoader = true;
+      state.cartLoader = true;
     });
     builder.addMatcher(
       isAnyOf(updateQuantityByIdAsync.fulfilled),
       (state, action) => {
-        state.updateQuantityLoader = false;
+        state.cartLoader = false;
         state.updateQuantity = action.payload;
       }
     );
     builder.addMatcher(
       isAnyOf(updateQuantityByIdAsync.rejected),
       (state, action) => {
-        state.updateQuantityLoader = false;
+        state.cartLoader = false;
       }
     );
 
     builder.addMatcher(isAnyOf(deleteItemByIdAsync.pending), (state) => {
-      state.deletedLoader = true;
+      state.cartLoader = true;
     });
     builder.addMatcher(
       isAnyOf(deleteItemByIdAsync.fulfilled),
       (state, action) => {
-        state.deletedLoader = false;
+        state.cartLoader = false;
         state.deletedItem = action.payload;
       }
     );
     builder.addMatcher(
       isAnyOf(deleteItemByIdAsync.rejected),
       (state, action) => {
-        state.deletedLoader = false;
+        state.cartLoader = false;
       }
     );
   },
