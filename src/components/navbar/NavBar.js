@@ -28,9 +28,15 @@ function NavBar({ children }) {
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const { getItemsByUser } = useSelector((state) => state.cart);
 
-  const productLink = currentUser?.role == "admin" ? "/admin" : "/";
-  const navigation = [{ name: "Products", link: productLink }];
+  // const productLink = currentUser?.role == "admin" ? "/admin" : "/";
+  // const navigation = [{ name: "Products", link: productLink }];
 
+  const navigation = [
+    { name: 'Products', link: '/', user: true },
+    { name: 'Products', link: '/admin', admin: true },
+    { name: 'Orders', link: '/admin/orders', admin: true },
+    ];
+    
   const userNavigation = [
     { name: "My Profile", link: "/profile" },
     {
@@ -65,21 +71,23 @@ function NavBar({ children }) {
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
-                        {navigation.map((item) => (
-                          <Link
-                            key={item.name}
-                            to={item.link}
-                            className={classNames(
-                              item.current
-                                ? "bg-gray-900 text-white"
-                                : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                              "rounded-md px-3 py-2 text-sm font-medium"
-                            )}
-                            aria-current={item.current ? "page" : undefined}
-                          >
-                            {item.name}
-                          </Link>
-                        ))}
+                        {navigation.map((item) =>
+                          item[currentUser?.role] ? (
+                            <Link
+                              key={item.name}
+                              to={item.link}
+                              className={classNames(
+                                item.current
+                                  ? 'bg-gray-900 text-white'
+                                  : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                'rounded-md px-3 py-2 text-sm font-medium'
+                              )}
+                              aria-current={item.current ? 'page' : undefined}
+                            >
+                              {item.name}
+                            </Link>
+                          ) : null
+                        )}
                       </div>
                     </div>
                   </div>
@@ -168,7 +176,7 @@ function NavBar({ children }) {
 
               <Disclosure.Panel className="md:hidden">
                 <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                  {navigation.map((item) => (
+                  {navigation.map((item) => item[currentUser?.role] ? (
                     <Disclosure.Button
                       key={item.name}
                       as="a"
@@ -183,7 +191,7 @@ function NavBar({ children }) {
                     >
                       {item.name}
                     </Disclosure.Button>
-                  ))}
+                  ):null)}
                 </div>
                 <div className="border-t border-gray-700 pb-3 pt-4">
                   <div className="flex items-center px-5">

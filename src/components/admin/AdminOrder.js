@@ -49,7 +49,10 @@ function AdminOrder() {
   };
 
   const handleSort = (sortOption) => {
-    const sort = { _sort: sortOption.sort, _order: sortOption.order };
+    const sort = {
+      _sort: sortOption.sort,
+      // _order: sortOption.order
+    };
     setSort(sort);
   };
 
